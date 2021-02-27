@@ -1,0 +1,22 @@
+{
+  "name": "webvtt-editor",
+  "version": "1.0.0",
+  "description": "webvtt subtitle editor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eduardo-gomes/webvtt-editor.git"
+  },
+  "author": "Eduardo de Matos Gomes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eduardo-gomes/webvtt-editor/issues"
+  },
+  "homepage": "https://github.com/eduardo-gomes/webvtt-editor#readme",
+  "dependencies": {
+    "tsc": "^1.20150623.0"
+  }
+}
