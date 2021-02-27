@@ -1,0 +1,6 @@
+.videoContainer video{
+	width: 35%;
+}
+.video-progress * {
+  width: 100%;
+}
