@@ -1,20 +1,54 @@
+:root{
+	--controls-height: 40vh;
+	--list-height: 50vh;
+}
 body{
 	display: flex;
 	flex-direction: column;
+	overflow-y: hidden;
+	height: 98vh;
+	margin: 1vh;
+}
+body >* {
+  margin: .2rem;
 }
 video{
 	width: 100%;
+	height: var(--controls-height);
+}
+.video-progress {
+	height: 100%;
 }
 .video-progress * {
 	width: 100%;
 }
+.video-progress progress{
+	height: 70%;
+}
 .controls {
 	display: grid;
-	grid: auto / 25%;
+	grid: 65% / 35%;
+	grid-column-gap: .5rem;
+	height: var(--controls-height);
 }
 .videoContainer {
 	grid-column: 1;
+	grid-row: 1 / 3;
+	height: var(--controls-height);
 }
 .controlContainer {
 	grid-column: 2;
+	height: 100%;
+}
+.subtitleEditor {
+	grid-column: 2;
+	height: 100%;
+}
+#subtitle-textarea {
+	width: 100%;
+	height: 4rem;
+}
+.subtitleContainer {
+	overflow: auto scroll;
+	height: var(--list-height);
 }
