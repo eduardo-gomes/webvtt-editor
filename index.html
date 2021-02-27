@@ -11,17 +11,26 @@
 
 <body>
 	<input id="fileInput" type="file" accept="video/*" />
-	<div class="videoContainer"><video id="video"></video></div>
-	<div class="controlContainer">
-		<div class="time">
-			<time id="time-elapsed">00:00.000</time>
-			<span> / </span>
-			<time id="duration">00:00.000</time>
+	<div class="controls">
+		<div class="videoContainer"><video id="video"></video></div>
+		<div class="controlContainer">
+			<div class="time">
+				<time id="time-elapsed">00:00.000</time>
+				<span> / </span>
+				<time id="duration">00:00.000</time>
+			</div>
+			<div class="video-progress">
+				<progress id="progress-bar" value="0" min="0"></progress>
+				<input class="seek" id="seek" value="0" min="0" type="range" step=".001">
+			</div>
 		</div>
-		<div class="video-progress">
-			<progress id="progress-bar" value="0" min="0"></progress>
-			<input class="seek" id="seek" value="0" min="0" type="range" step=".001">
-		</div>
+	</div>
+	<div class="subtitleEditor">
+		<textarea name="sub" id="subtitle-textarea" cols="30" rows="10"></textarea>
+		<input type="button" id="subtitle-ok" value="OK" />
+	</div>
+	<div class="subtitleContainer" id="entryList">
+
 	</div>
 </body>
 <script type="module" src="index.js"></script>
