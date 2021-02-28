@@ -1,4 +1,6 @@
-const progressBar = document.getElementById('progress-bar') as HTMLProgressElement;
+import { getVideoTime } from "../player.js";
+
+//const progressBar = document.getElementById('progress-bar') as HTMLProgressElement;
 const seek = document.getElementById('seek') as HTMLInputElement;
 const timeElapsed = document.getElementById('time-elapsed') as HTMLTimeElement;
 const timeDuration = document.getElementById('duration') as HTMLTimeElement;
@@ -6,7 +8,7 @@ const timeDuration = document.getElementById('duration') as HTMLTimeElement;
 function updateDuration(duration: number) {
 	const videoDuration = duration;
 	seek.setAttribute('max', videoDuration.toString());
-	progressBar.setAttribute('max', videoDuration.toString());
+	//progressBar.setAttribute('max', videoDuration.toString());
 	const time = formatTime(videoDuration);
 	timeDuration.innerText = `${time.minutes}:${time.seconds}`;
 	timeDuration.setAttribute('datetime', `${time.minutes}m ${time.seconds}s`);
@@ -14,29 +16,29 @@ function updateDuration(duration: number) {
 function onPlay(play: Event) {
 	if (play.target === null) return;
 	if (!(play.target instanceof HTMLVideoElement)) return;
-	const videoNode: HTMLVideoElement = play.target;
+	//const videoNode: HTMLVideoElement = play.target;
 
-	startUpdater(videoNode);
+	startUpdater();
 }
 function onPause(play: Event) {
 	if (play.target === null) return;
 	if (!(play.target instanceof HTMLVideoElement)) return;
-	const videoNode: HTMLVideoElement = play.target;
+	//const videoNode: HTMLVideoElement = play.target;
 
 	stopUpdater();
 }
-function update(videoNode: HTMLVideoElement) {
-	const duration = videoNode.duration;
-	const currentTime = videoNode.currentTime;
+
+function update() {
+	const { duration, currentTime } = getVideoTime();
 
 	updateDuration(duration);
 	updateProgress(currentTime);
 }
 var updaterInterval: number;
-function startUpdater(videoNode: HTMLVideoElement) {
+function startUpdater() {
 	const INTERVAL = 1000 / 60;//60 FPS
 	updaterInterval = window.setInterval(function () {
-		update(videoNode);
+		update();
 	}, INTERVAL);
 }
 function stopUpdater() {
@@ -45,7 +47,7 @@ function stopUpdater() {
 
 function updateProgress(currentTime: number) {
 	seek.value = currentTime.toString();
-	progressBar.value = currentTime;
+	//progressBar.value = currentTime;
 
 	var time = formatTime(currentTime);
 	timeElapsed.innerText = `${time.minutes}:${time.seconds}`;

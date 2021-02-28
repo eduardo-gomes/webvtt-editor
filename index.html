@@ -20,7 +20,8 @@
 				<time id="duration">00:00.000</time>
 			</div>
 			<div class="video-progress">
-				<progress id="progress-bar" value="0" min="0"></progress>
+				<canvas id="demo-canvas" class="timeline"></canvas>
+				<!-- <progress id="progress-bar" value="0" min="0"></progress> -->
 				<input class="seek" id="seek" value="0" min="0" type="range" step=".001">
 			</div>
 		</div>
@@ -30,7 +31,7 @@
 		</div>
 	</div>
 	<div class="subtitleContainer" id="entryList">
-		<canvas id="demo-canvas"></canvas>
+
 	</div>
 </body>
 <script type="module" src="index.js"></script>

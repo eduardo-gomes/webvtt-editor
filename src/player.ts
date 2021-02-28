@@ -45,5 +45,12 @@ function setupVideoPlayer() {
 videoNode.addEventListener("play", onPlay);
 videoNode.addEventListener("pause", onPause);
 
+function getVideoTime() {
+	return {
+		duration: videoNode.duration,
+		currentTime: videoNode.currentTime
+	};
+}
 
+export { getVideoTime };
 export default setupVideoPlayer;

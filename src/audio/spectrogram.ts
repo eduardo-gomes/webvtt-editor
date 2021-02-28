@@ -1,4 +1,6 @@
-const spectrumCanvas = document.getElementById("demo-canvas") as HTMLCanvasElement;//document.createElement("canvas");
+import { updateTimeline } from "./timeline.js";
+
+const spectrumCanvas = document.createElement("canvas");
 const spectrumContext = spectrumCanvas.getContext("2d") as CanvasRenderingContext2D;
 
 const audioContext = new window.AudioContext;
@@ -11,14 +13,15 @@ function setupSource(media: File) {
 function fileToAudioBuffer(media: File) {
 	media.arrayBuffer().then(
 		function (arrayBuffer) {
-			audioContext.decodeAudioData(arrayBuffer, (buffer) => {
+			audioContext.decodeAudioData(arrayBuffer).then((buffer) => {
 				console.log(buffer);
 				generate(buffer);
-			}).catch((e) => { console.error(`Fail to decode audio data, type: ${media.type}, error: ${e}`) });
+			}, (e) => { console.error(`Fail to decode audio data, type: ${media.type}, error: ${e}`) });
 		}
 	);
 }
 
+const SAMPLES_PER_FTT = 4096;
 function generate(buffer: AudioBuffer) {
 	offlineContext = new OfflineAudioContext(buffer.numberOfChannels, buffer.length, buffer.sampleRate);
 	let analyser = offlineContext.createAnalyser();
@@ -26,7 +29,6 @@ function generate(buffer: AudioBuffer) {
 	let audioBuffer = offlineContext.createBufferSource();
 	audioBuffer.connect(analyser)
 	audioBuffer.buffer = buffer;
-	const SAMPLES_PER_FTT = 4096;
 	let scp = offlineContext.createScriptProcessor(SAMPLES_PER_FTT, 0, 1);
 	scp.connect(offlineContext.destination);
 
@@ -65,6 +67,12 @@ function generate(buffer: AudioBuffer) {
 	}
 	offlineContext.startRendering();
 	audioBuffer.start(0);
+	updateTimeline();
 }
 
-export { setupSource };
+function getSpectrum() {
+	let image = spectrumCanvas;
+	return { image, samples: SAMPLES_PER_FTT };
+}
+
+export { setupSource, getSpectrum };

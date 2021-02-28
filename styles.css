@@ -22,7 +22,7 @@ video{
 .video-progress * {
 	width: 100%;
 }
-.video-progress progress{
+.timeline{
 	height: 70%;
 }
 .controls {
