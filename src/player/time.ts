@@ -34,7 +34,7 @@ function update(videoNode: HTMLVideoElement) {
 }
 var updaterInterval: number;
 function startUpdater(videoNode: HTMLVideoElement) {
-	const INTERVAL = 75;
+	const INTERVAL = 1000 / 60;//60 FPS
 	updaterInterval = window.setInterval(function () {
 		update(videoNode);
 	}, INTERVAL);

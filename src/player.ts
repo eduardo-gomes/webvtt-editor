@@ -1,3 +1,4 @@
+import { setupSource } from "./audio/spectrogram.js";
 import { onPlay, onPause } from "./player/time.js"
 
 const URL = window.URL || window.webkitURL;
@@ -30,7 +31,9 @@ function playSelectedFile(event: Event) {
 	console.log(fileURL);
 	videoNode.load();
 
-	videoNode.play();
+	setupSource(file);
+
+	//videoNode.play();
 }
 var inputNode = document.getElementById("fileInput") as HTMLInputElement;
 
